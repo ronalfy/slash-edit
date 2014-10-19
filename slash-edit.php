@@ -76,7 +76,7 @@ class Slash_Edit {
 add_action( 'plugins_loaded', 'slash_edit_instantiate' );
 function slash_edit_instantiate() {
 	Slash_Edit::get_instance();
-} //end sce_instantiate
+} //end slash_edit_instantiate
 
 register_activation_hook( __FILE__, array( 'Slash_Edit', 'activate' ) );
 register_activation_hook( __FILE__, array( 'Slash_Edit', 'deactivate' ) );

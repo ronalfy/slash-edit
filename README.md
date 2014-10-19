@@ -25,5 +25,5 @@ Just browse to the post, page, or custom post type, and add "/edit" to the end (
 
 You'll need <a href="http://codex.wordpress.org/Using_Permalinks#mod_rewrite:_.22Pretty_Permalinks.22">pretty permalinks enabled</a>, which pretty much everyone already does.
 
-### Where are the options? =
+### Where are the options?
 No options :) 
