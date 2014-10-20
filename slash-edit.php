@@ -23,7 +23,7 @@ class Slash_Edit {
 	private function __construct() {
 		add_action( 'init', array( $this, 'init' ), 20 );
 		add_action( 'template_redirect', array( $this, 'maybe_redirect' ) );
-		add_action( 'rewrite_rules_array', array( $this, 'add_rewrite_rules' ) );
+		add_filter( 'rewrite_rules_array', array( $this, 'add_rewrite_rules' ) );
 		
 	} //end constructor
 	
