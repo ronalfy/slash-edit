@@ -30,7 +30,7 @@ Just browse to the post, page, or custom post type, and add "/edit" to the end (
 You'll need <a href="http://codex.wordpress.org/Using_Permalinks#mod_rewrite:_.22Pretty_Permalinks.22">pretty permalinks enabled</a>, which pretty much everyone already does.
 
 ###How do I change the "/edit" to something else?
-Yep, just throw <a href="https://gist.github.com/ronalfy/cbbc1599bda2811c9a86">this code</a> in a <a href="http://www.wpbeginner.com/beginners-guide/what-why-and-how-tos-of-creating-a-site-specific-wordpress-plugin/">Site-specific plugin</a>.
+Just throw <a href="https://gist.github.com/ronalfy/cbbc1599bda2811c9a86">this code</a> in a <a href="http://www.wpbeginner.com/beginners-guide/what-why-and-how-tos-of-creating-a-site-specific-wordpress-plugin/">Site-specific plugin</a>.
 
 Just keep in mind that whatever you choose to override with must be alphanumeric characters.  Something like edición will be parsed as edicion.
 
