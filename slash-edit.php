@@ -128,8 +128,3 @@ function slash_edit_instantiate() {
 
 register_activation_hook( __FILE__, array( 'Slash_Edit', 'activate' ) );
 register_activation_hook( __FILE__, array( 'Slash_Edit', 'deactivate' ) );
-
-add_filter( 'slash_edit_endpoint', 'rjh_slash_edit_endpoint' );
-function rjh_slash_edit_endpoint( $endpoint ) {
-	return 'edición';
-}
