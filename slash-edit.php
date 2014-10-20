@@ -11,6 +11,7 @@ Contributors: ronalfy
 */ 
 class Slash_Edit {
 	private static $instance = null;
+	private $endpoint = 'edit';
 	
 	//Singleton
 	public static function get_instance() {
@@ -24,7 +25,7 @@ class Slash_Edit {
 		add_action( 'init', array( $this, 'init' ), 20 );
 		add_action( 'template_redirect', array( $this, 'maybe_redirect' ) );
 		add_filter( 'rewrite_rules_array', array( $this, 'add_rewrite_rules' ) );
-		
+		$this->endpoint = sanitize_title( apply_filters( 'slash_edit_endpoint', 'edit' ) );	
 	} //end constructor
 	
 	public static function activate() {
@@ -47,7 +48,7 @@ class Slash_Edit {
 		);
 		foreach( $taxonomies as $key => $taxonomy ) {
 			if ( in_array( $key, $exclude ) ) continue;
-			$rules[ "{$blog_prefix}{$key}/([^/]+)/edit(/(.*))?/?$" ] = 'index.php?' . $key . '=$matches[1]&edit=$matches[3]';
+			$rules[ "{$blog_prefix}{$key}/([^/]+)/{$this->endpoint}(/(.*))?/?$" ] = 'index.php?' . $key . '=$matches[1]&' . $this->endpoint . '=$matches[3]';
 		}	
 		return $rules;	
 	}
@@ -64,14 +65,14 @@ class Slash_Edit {
 			//Let's see if we're being deactivated
 			if ( $_GET[ 'plugin' ] === $plugin_basename ) {
 				if ( wp_verify_nonce( $_REQUEST[ '_wpnonce' ], 	'deactivate-plugin_' . $plugin_basename ) ) {
-						add_rewrite_endpoint( 'edit', EP_NONE );
+						add_rewrite_endpoint( $this->endpoint, EP_NONE );
 						flush_rewrite_rules( false );	
 				}
 			}
 		}
 		
 		//Refresh rewrite rules if plugin is activated
-		add_rewrite_endpoint( 'edit', EP_PERMALINK | EP_PAGES | EP_CATEGORIES | EP_TAGS | EP_AUTHORS ); //todo - adding EP_ATTACHMENT messes up EP_PERMALINK and EP_PAGES
+		add_rewrite_endpoint( $this->endpoint, EP_PERMALINK | EP_PAGES | EP_CATEGORIES | EP_TAGS | EP_AUTHORS ); //todo - adding EP_ATTACHMENT messes up EP_PERMALINK and EP_PAGES
 		if ( get_option( 'slash_edit_install', 'false' ) == 'true' ) {		
 			flush_rewrite_rules( false );
 			delete_option( 'slash_edit_install' );
@@ -81,7 +82,7 @@ class Slash_Edit {
 	public function maybe_redirect() {
 		global $wp_query;
 
-		if ( !isset( $wp_query->query_vars[ 'edit' ] ) ) return;		
+		if ( !isset( $wp_query->query_vars[ $this->endpoint ] ) ) return;		
 		
 		$edit_url = false;
 		if ( is_attachment() || is_single() || is_page() ) { /* Post, page, attachment, or CPTs */
@@ -127,3 +128,8 @@ function slash_edit_instantiate() {
 
 register_activation_hook( __FILE__, array( 'Slash_Edit', 'activate' ) );
 register_activation_hook( __FILE__, array( 'Slash_Edit', 'deactivate' ) );
+
+add_filter( 'slash_edit_endpoint', 'rjh_slash_edit_endpoint' );
+function rjh_slash_edit_endpoint( $endpoint ) {
+	return 'edición';
+}

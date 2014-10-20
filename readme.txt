@@ -42,6 +42,14 @@ That one I couldn't figure out.  Patches welcome.
 = Where are the options? =
 No options :)
 
+= English is not my first language.  Can I change the "/edit" into something else? =
+
+Yep, just throw <a href="https://gist.github.com/ronalfy/cbbc1599bda2811c9a86">this code</a> in a <a href="http://www.wpbeginner.com/beginners-guide/what-why-and-how-tos-of-creating-a-site-specific-wordpress-plugin/">Site-specific plugin</a>.
+
+Just keep in mind that whatever you choose to override with must be alphanumeric characters.  Something like edición will be parsed as edicion.
+
+If you choose to use this filter, you'll need to <a href="http://codex.wordpress.org/Settings_Permalinks_Screen">update your permalinks</a> or deactivate and reactivate the Slash Edit plugin.
+
 == Changelog ==
 
 = 1.0.0 =
