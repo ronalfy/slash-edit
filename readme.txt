@@ -20,6 +20,8 @@ This is useful if:
 * You are not logged in, and want an easy shortcut to edit an item.
 * You hate the admin bar and have disabled it, but still want an easy shortcut to edit an item.
 
+Plugin banner and icon by <a href="https://www.flickr.com/photos/matthewgriff/4112899269/">matthewgriff</a>.
+
 == Installation ==
 
 1. Just unzip and upload the "slash-edit" folder to your '/wp-content/plugins/' directory
