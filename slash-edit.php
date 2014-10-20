@@ -21,18 +21,42 @@ class Slash_Edit {
 	} //end get_instance
 	
 	private function __construct() {
-		add_action( 'init', array( $this, 'init' ), 9 );
+		add_action( 'init', array( $this, 'init' ), 20 );
 		add_action( 'template_redirect', array( $this, 'maybe_redirect' ) );
+		add_action( 'rewrite_rules_array', array( $this, 'add_rewrite_rules' ) );
 		
 	} //end constructor
 	
 	public static function activate() {
 		update_option( 'slash_edit_install', 'true' );
 	}
+	
+	public function add_rewrite_rules( $rules ) {
+		//Get taxonomies
+		$taxonomies = get_taxonomies();
+		$blog_prefix = '';
+		if ( is_multisite() && !is_subdomain_install() && is_main_site() ) { /* stolen from /wp-admin/options-permalink.php */
+			$blog_prefix = 'blog/';
+		}
+		$exclude = array(
+			'category',
+			'post_tag',
+			'nav_menu',
+			'link_category',
+			'post_format'
+		);
+		foreach( $taxonomies as $key => $taxonomy ) {
+			if ( in_array( $key, $exclude ) ) continue;
+			$rules[ "{$blog_prefix}{$key}/([^/]+)/edit(/(.*))?/?$" ] = 'index.php?' . $key . '=$matches[1]&edit=$matches[3]';
+		}	
+		return $rules;	
+	}
 	public static function deactivate() {
 	}
 	
 	public function init() {
+		global $wp_rewrite;
+
 		//Delete rewrite rules if plugin is deactivated
 		if ( isset( $_GET[ 'action' ] ) && $_GET[ 'action' ] == 'deactivate' ) {
 			$plugin_basename = plugin_basename( __FILE__ );
@@ -47,8 +71,8 @@ class Slash_Edit {
 		}
 		
 		//Refresh rewrite rules if plugin is activated
-		add_rewrite_endpoint( 'edit', EP_PERMALINK | EP_PAGES );
-		if ( get_option( 'slash_edit_install', 'false' ) == 'true' ) {
+		add_rewrite_endpoint( 'edit', EP_PERMALINK | EP_PAGES | EP_CATEGORIES | EP_TAGS | EP_AUTHORS ); //todo - adding EP_ATTACHMENT messes up EP_PERMALINK and EP_PAGES
+		if ( get_option( 'slash_edit_install', 'false' ) == 'true' ) {		
 			flush_rewrite_rules( false );
 			delete_option( 'slash_edit_install' );
 		}
@@ -56,15 +80,38 @@ class Slash_Edit {
 	
 	public function maybe_redirect() {
 		global $wp_query;
-		if ( !isset( $wp_query->query_vars[ 'edit' ] ) ) return;
+
+		if ( !isset( $wp_query->query_vars[ 'edit' ] ) ) return;		
 		
-		//Get the post, page, or cpt id
-		$post = get_queried_object();
-		$post_id = isset( $post->ID ) ? $post->ID : false;
-		if ( $post_id === false ) return;
+		$edit_url = false;
+		if ( is_attachment() || is_single() || is_page() ) { /* Post, page, attachment, or CPTs */
+			//Get the post, page, or cpt id
+			$post = get_queried_object();
+			$post_id = isset( $post->ID ) ? $post->ID : false;
+			if ( $post_id === false ) return;
+			
+			//Build the url
+			$edit_url = esc_url_raw( add_query_arg( array( 'post' => absint( $post_id ), 'action' => 'edit' ), admin_url( 'post.php' ) ) );
+		} elseif ( is_author() ) { /* Author Page */
+			$user_data = get_queried_object();
+			if ( is_a( $user_data, 'WP_User' ) ) {
+				$user_id = $user_data->ID;
+				//Build the url
+				$edit_url = esc_url_raw( add_query_arg( array( 'user_id' => absint( $user_id ), 'action' => 'edit' ), admin_url( 'user-edit.php' ) ) );
+			} 
+		} elseif ( is_category() || is_tag() || is_tax() ) {
+			$tax_data = get_queried_object();
+			if ( is_object( $tax_data ) && isset( $tax_data->term_id ) ) {
+				$term_id = $tax_data->term_id;
+				$taxonomy = $tax_data->taxonomy;
+				//Build the url
+				$edit_url = esc_url_raw( add_query_arg( array( 'tag_ID' => absint( $term_id ), 'taxonomy' => $taxonomy, 'action' => 'edit', 'post_type' => get_post_type() ), admin_url( 'edit-tags.php' ) ) );
+			}
+		}
 		
-		//Build the url
-		$edit_url = esc_url_raw( add_query_arg( array( 'post' => absint( $post_id ), 'action' => 'edit' ), admin_url( 'post.php' ) ) );
+		//Return if nothing to redirect to
+		if ( $edit_url === false ) return;		
+		
 		
 		//Redirect yo
 		wp_safe_redirect( $edit_url );

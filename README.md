@@ -7,6 +7,8 @@ Slash Edit for WordPress 3.9.1+
 
 Edit posts, pages, or custom post types by adding a "/edit" to the end of the URL.  If you are not logged in, you will be prompted to log in in order to edit the item.
 
+The "/edit" functionality also works on author and taxonomy archives.
+
 This is useful if:
 
 <ul>

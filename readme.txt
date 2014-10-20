@@ -13,6 +13,8 @@ Edit your posts or pages with a simple "/edit" at the end
 
 Edit posts, pages, or custom post types by adding a "/edit" to the end of the URL.  If you are not logged in, you will be prompted to log in in order to edit the item.
 
+The "/edit" functionality also works on author and taxonomy archives.
+
 This is useful if:
 
 * You are not logged in, and want an easy shortcut to edit an item.
@@ -30,7 +32,10 @@ Just browse to the post, page, or custom post type, and add "/edit" to the end (
 You'll need <a href="http://codex.wordpress.org/Using_Permalinks#mod_rewrite:_.22Pretty_Permalinks.22">pretty permalinks enabled</a>, which pretty much everyone already does.
 
 = Will you allow quick editing of categories and other items later? =
-Probably.  I'd like to see how well this plugin is received before investing any more time in it.
+It's already in there :D
+
+= What about attachment pages? =
+That one I couldn't figure out.  Patches welcome.
 
 = Where are the options? =
 No options :)
