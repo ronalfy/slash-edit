@@ -9,6 +9,8 @@ Edit posts, pages, or custom post types by adding a "/edit" to the end of the UR
 
 The "/edit" functionality also works on author and taxonomy archives.
 
+This is the awesome place where the developmental (growing?) version of the plugin lives.  For more stable releases, check out: https://wordpress.org/plugins/slash-edit/
+
 This is useful if:
 
 <ul>
