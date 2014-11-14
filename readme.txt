@@ -3,7 +3,7 @@ Contributors: ronalfy
 Tags: admin, edit
 Requires at least: 3.9.1
 Tested up to: 4.0
-Stable tag: 1.1.0
+Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -52,6 +52,10 @@ If you choose to use this filter, you'll need to <a href="http://codex.wordpress
 
 == Changelog ==
 
+= 1.1.1 =
+* Released 2014-11-13
+* Fixing endpoint when page is created with same slug as the endpoint
+
 = 1.1.0 =
 * Released 2014-11-13
 * Added "/edit" to the front of the site (e.g., www.domain.com/edit) if you have a page set as your front page.
@@ -63,8 +67,5 @@ If you choose to use this filter, you'll need to <a href="http://codex.wordpress
 
 == Upgrade Notice ==
 
-= 1.1.0 =
-Slash Edit now works on the home page when a page is set as your front page.  New filter: `slash_edit_url`.
-
-= 1.0.0 =
-Initial Release
+= 1.1.1 =
+Slash Edit now works on the home page when a page is set as your front page.  New filter: `slash_edit_url`.  Fixing endpoint when page is created with same slug as the endpoint

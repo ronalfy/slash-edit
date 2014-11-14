@@ -4,7 +4,7 @@ Plugin Name: Slash Edit
 Plugin URI: http://wordpress.org/extend/plugins/slash-edit/
 Description: Edit your posts or pages with a simple "/edit" at the end
 Author: ronalfy
-Version: 1.1.0
+Version: 1.1.1
 Requires at least: 3.9.1
 Author URI: http://www.ronalfy.com
 Contributors: ronalfy
@@ -162,12 +162,13 @@ class Slash_Edit {
 	
 	//Update rewrite rules if a parent page with slug 'edit' is edited and/or update - This way if there is a page with path www.domain.com/edit/, the page has priority
 	public static function save_post( $post_id = 0 ) {
+		$endpoint = Slash_Edit::get_instance()->get_endpoint();
 		if ( wp_is_post_revision( $post_id ) )
 			return;
 		global $post;
 		if ( !is_object( $post ) )
 			$post = get_post( $post_id );
-		if( $post->post_parent == 0 && $post->post_name == 'edit'  && $post->post_type == 'page' ) {
+		if( $post->post_parent == 0 && $post->post_name == $endpoint  && $post->post_type == 'page' ) {
 			flush_rewrite_rules( false );
 		}
 	}
