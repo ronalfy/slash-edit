@@ -3,7 +3,7 @@ Contributors: ronalfy
 Tags: admin, edit
 Requires at least: 3.9.1
 Tested up to: 4.0
-Stable tag: 1.0
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,7 +13,7 @@ Edit your posts or pages with a simple "/edit" at the end
 
 Edit posts, pages, or custom post types by adding a "/edit" to the end of the URL.  If you are not logged in, you will be prompted to log in in order to edit the item.
 
-The "/edit" functionality also works on author and taxonomy archives.
+The "/edit" functionality also works on author and taxonomy archives, and if you have a page assigned as your front page of your site.
 
 This is useful if:
 
@@ -52,11 +52,19 @@ If you choose to use this filter, you'll need to <a href="http://codex.wordpress
 
 == Changelog ==
 
+= 1.1.0 =
+* Released 2014-11-13
+* Added "/edit" to the front of the site (e.g., www.domain.com/edit) if you have a page set as your front page.
+* Added a `slash_edit_url` filter to determine where to redirect a user when "/edit" is present (props <a href="https://profiles.wordpress.org/bjornjohansen/">Bjørn J.</a>)
+
 = 1.0.0 =
 * Released 2014-10-19
 * Initial Release
 
 == Upgrade Notice ==
+
+= 1.1.0 =
+Slash Edit now works on the home page when a page is set as your front page.  New filter: `slash_edit_url`.
 
 = 1.0.0 =
 Initial Release
