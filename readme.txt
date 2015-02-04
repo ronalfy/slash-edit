@@ -1,5 +1,5 @@
 === Slash Edit ===
-Contributors: ronalfy
+Contributors: ronalfy, bigwing
 Tags: admin, edit
 Requires at least: 3.9.1
 Tested up to: 4.1
