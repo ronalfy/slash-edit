@@ -2,7 +2,7 @@
 Contributors: ronalfy, bigwing
 Tags: admin, edit
 Requires at least: 3.9.1
-Tested up to: 4.2
+Tested up to: 4.3
 Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -53,6 +53,7 @@ If you choose to use this filter, you'll need to <a href="http://codex.wordpress
 == Changelog ==
 
 = 1.1.1 =
+* Updated 2015-08-20 - Ensuring WordPress 4.3 compatibility
 * Updated 2015-04-19 - Ensuring WordPress 4.2 compatibility
 * Updated 2014-12-11 - Ensuring WordPress 4.1 compatibility 
 * Released 2014-11-13
