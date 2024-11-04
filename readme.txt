@@ -1,12 +1,12 @@
 === Slash Edit ===
-Contributors: ronalfy, bigwing
+Contributors: ronalfy
 Tags: admin, edit
 Requires at least: 3.9.1
-Tested up to: 5.3
+Tested up to: 6.7
 Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Donate link: https://mediaron.com/contribute/
+Donate link: https://mediaron.com/give/
 
 Edit your posts or pages with a simple "/edit" at the end
 
@@ -14,14 +14,17 @@ Edit your posts or pages with a simple "/edit" at the end
 
 Edit posts, pages, or custom post types by adding a "/edit" to the end of the URL.  If you are not logged in, you will be prompted to log in in order to edit the item.
 
+Send clients pretty URLs to the admin instead of a ton of query variables!
+
 The "/edit" functionality also works on author and taxonomy archives, and if you have a page assigned as your front page of your site.
+
+https://www.youtube.com/watch?v=8LKFK5-FokE
 
 This is useful if:
 
 * You are not logged in, and want an easy shortcut to edit an item.
 * You hate the admin bar and have disabled it, but still want an easy shortcut to edit an item.
-
-Plugin banner and icon by <a href="https://www.flickr.com/photos/matthewgriff/4112899269/">matthewgriff</a>.
+* You have clients. Send them a pretty URL with "/edit" on the end.
 
 == Installation ==
 
@@ -51,12 +54,16 @@ Just keep in mind that whatever you choose to override with must be alphanumeric
 
 If you choose to use this filter, you'll need to <a href="http://codex.wordpress.org/Settings_Permalinks_Screen">update your permalinks</a> or deactivate and reactivate the Slash Edit plugin.
 
+== Screenshots ==
+
+1. Slash Edit when editing a post on the front-end.
+
 == Changelog ==
 
 = 1.1.1 =
 * Updated 2015-08-20 - Ensuring WordPress 4.3 compatibility
 * Updated 2015-04-19 - Ensuring WordPress 4.2 compatibility
-* Updated 2014-12-11 - Ensuring WordPress 4.1 compatibility
+* Updated 2014-12-11 - Ensuring WordPress 4.1 compatibility 
 * Released 2014-11-13
 * Fixing endpoint when page is created with same slug as the endpoint
 
